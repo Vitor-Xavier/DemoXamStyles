@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation"
+             xmlns:i18n="clr-namespace:DemoXamStyles.Helpers"
+             x:Class="DemoXamStyles.Pages.HomePage">
+    <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xamanimation:StoryBoard 
+                x:Key="LabelAnimation"    
+                Target="{x:Reference HomeLabel}">
+                <xamanimation:FadeToAnimation  Opacity="0" Duration="0" />
+                <xamanimation:FadeToAnimation Opacity="1" Duration="500" />
+            </xamanimation:StoryBoard>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <lottie:AnimationView
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Animation="xamarin-logo.json"
+                    Margin="40"
+                    BackgroundColor="Transparent"
+                    PlaybackFinishedCommand="{Binding AnimationCommand}"
+                    AutoPlay="True"
+                    Loop="False" />
+            <Label x:Name="HomeLabel" 
+                   Grid.Row="1" 
+                   Grid.ColumnSpan="2" 
+                   FontFamily="{StaticResource TitleFont}" 
+                   Text="{i18n:Translate HomeTitle}" 
+                   TextColor="{StaticResource SecondaryText}" 
+                   IsVisible="{Binding TitleEnabled}"
+                   FontSize="Large"
+                   VerticalOptions="StartAndExpand"
+                   HorizontalOptions="CenterAndExpand">
+                <Label.Triggers>
+                    <Trigger TargetType="Label" Property="Label.IsVisible" Value="True">
+                        <Trigger.EnterActions>
+                            <xamanimation:BeginAnimation
+                                                Animation="{StaticResource LabelAnimation}" />
+                        </Trigger.EnterActions>
+                    </Trigger>
+                </Label.Triggers>
+            </Label>
+            <Button Grid.Row="2" Grid.Column="0" 
+                    Margin="8"
+                    BackgroundColor="White"
+                    Text="{i18n:Translate SearchPage}"
+                    TextColor="{StaticResource SecondaryText}"
+                    Command="{Binding SearchCommand}"/>
+            <Button Grid.Row="2" Grid.Column="1" 
+                    Margin="8"
+                    Text="{i18n:Translate TabsPage}" 
+                    TextColor="{StaticResource PrimaryLightText}"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    Command="{Binding TabCommand}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

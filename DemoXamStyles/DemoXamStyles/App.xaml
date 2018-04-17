@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoXamStyles.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            
+            <!--Colors-->
+            <Color x:Key="AppTitleColor">#f3f3f3</Color>
+            <Color x:Key="AppBarColor">#00000000</Color>
+            <Color x:Key="AccentColor">#E53935</Color>
+            <Color x:Key="PrimaryLightText">#FFFFFF</Color>
+            <Color x:Key="SecondaryLightColor">#b3FFFFFF</Color>
+            <Color x:Key="PrimaryText">#000000</Color>
+            <Color x:Key="SecondaryText">#8a000000</Color>
+            <Color x:Key="HintText">#62000000</Color>
+            
+            <!--Fonts-->
+            <OnPlatform x:TypeArguments="x:String" x:Key="BodyFont">
+                <On Platform="Android" Value="WorkSans-Regular.ttf#WorkSans-Regular"/>
+                <On Platform="iOS" Value="Fonts/WorkSans-Regular"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="RegularFont">
+                <On Platform="Android" Value="Roboto-Regular.ttf#Roboto-Regular"/>
+                <On Platform="iOS" Value="Fonts/Roboto-Regular"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="TitleFont">
+                <On Platform="Android" Value="Roboto-Bold.ttf#Roboto-Bold"/>
+                <On Platform="iOS" Value="Fonts/Roboto-Bold"/>
+            </OnPlatform>
+            
+            <!--Styles-->
+            <Style TargetType="SearchBar">
+                <Setter Property="PlaceholderColor" Value="{StaticResource SecondaryLightColor}"/>
+                <Setter Property="FontFamily" Value="{StaticResource RegularFont}"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryLightText}"/>
+                <Setter Property="CancelButtonColor" Value="{StaticResource PrimaryLightText}"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

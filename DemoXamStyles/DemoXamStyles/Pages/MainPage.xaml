@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:DemoXamStyles.Resources;assembly=DemoXamStyles"
+             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation"
+             xmlns:i18n="clr-namespace:DemoXamStyles.Helpers"
+             x:Class="DemoXamStyles.Pages.MainPage"
+             Title="{i18n:Translate MainTitle}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <res:TabResources/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--First Tab Animations-->
+            <xamanimation:StoryBoard 
+                x:Key="DescriptionTabAnimation"    
+                Target="{x:Reference DescriptionTab}">
+                <xamanimation:FadeToAnimation  Opacity="0" Duration="0" />
+                <xamanimation:TranslateToAnimation TranslateX="300" Duration="0" />
+                <xamanimation:FadeToAnimation Opacity="1" Duration="150" />
+                <xamanimation:TranslateToAnimation TranslateX="0" Easing="SpringOut" Duration="200" />
+            </xamanimation:StoryBoard>
+            <xamanimation:StoryBoard 
+                x:Key="DescriptionAnimation"    
+                Target="{x:Reference DescriptionPanel}">
+                <xamanimation:FadeToAnimation  Opacity="0" Duration="0" />
+                <xamanimation:TranslateToAnimation TranslateX="300" Duration="0" />
+                <xamanimation:FadeToAnimation Opacity="1" Duration="150" />
+                <xamanimation:TranslateToAnimation TranslateX="0" Easing="SpringOut" Duration="200" />
+            </xamanimation:StoryBoard>
+
+            <!--Second Tab Animations-->
+            <xamanimation:StoryBoard 
+                x:Key="CharactersTabAnimation"    
+                Target="{x:Reference CharactersTab}">
+                <xamanimation:FadeToAnimation  Opacity="0" Duration="0" />
+                <xamanimation:TranslateToAnimation TranslateX="300" Duration="0" />
+                <xamanimation:FadeToAnimation Opacity="1" Duration="150" />
+                <xamanimation:TranslateToAnimation TranslateX="0" Easing="SpringOut" Duration="200" />
+            </xamanimation:StoryBoard>
+            <xamanimation:StoryBoard 
+                x:Key="CharactersAnimation"    
+                Target="{x:Reference CharactersPanel}">
+                <xamanimation:FadeToAnimation  Opacity="0" Duration="0" />
+                <xamanimation:TranslateToAnimation TranslateX="300" Duration="0" />
+                <xamanimation:FadeToAnimation Opacity="1" Duration="150" />
+                <xamanimation:TranslateToAnimation TranslateX="0" Easing="SpringOut" Duration="200" />
+            </xamanimation:StoryBoard>
+
+            <!--Third Tab Animations-->
+            <xamanimation:StoryBoard 
+                x:Key="VehiclesTabAnimation"    
+                Target="{x:Reference VehiclesTab}">
+                <xamanimation:FadeToAnimation  Opacity="0" Duration="0" />
+                <xamanimation:TranslateToAnimation TranslateX="300" Duration="0" />
+                <xamanimation:FadeToAnimation Opacity="1" Duration="150" />
+                <xamanimation:TranslateToAnimation TranslateX="0" Easing="SpringOut" Duration="200" />
+            </xamanimation:StoryBoard>
+            <xamanimation:StoryBoard 
+                x:Key="VehiclesAnimation"    
+                Target="{x:Reference VehiclesPanel}">
+                <xamanimation:FadeToAnimation  Opacity="0" Duration="0" />
+                <xamanimation:TranslateToAnimation TranslateX="300" Duration="0" />
+                <xamanimation:FadeToAnimation Opacity="1" Duration="150" />
+                <xamanimation:TranslateToAnimation TranslateX="0" Easing="SpringOut" Duration="200" />
+            </xamanimation:StoryBoard>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3.5*"/>
+                <RowDefinition Height="6.5*"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" Aspect="AspectFill">
+                <Image.Source>
+                    <UriImageSource Uri="https://img.estadao.com.br/resources/jpg/7/0/1518134326007.jpg"
+                                    CacheValidity="5"
+                                    CachingEnabled="True"/>
+                </Image.Source>
+            </Image>
+
+            <!--Tabs-->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="9*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--Tab 1-->
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="{i18n:Translate Description}" Style="{StaticResource TabTitle}">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding Description}" Value="True" >
+                                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <BoxView x:Name="DescriptionTab" Grid.Row="1" BackgroundColor="White">
+                        <BoxView.Triggers>
+                            <DataTrigger TargetType="BoxView" Binding="{Binding Description}" Value="True">
+                                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}"/>
+                                <Trigger.EnterActions>
+                                    <xamanimation:BeginAnimation
+                                                Animation="{StaticResource DescriptionTabAnimation}" />
+                                </Trigger.EnterActions>
+                            </DataTrigger>
+                        </BoxView.Triggers>
+                    </BoxView>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DescriptionCommand}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <!--Description content-->
+                <Grid x:Name="DescriptionPanel" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="0" IsVisible="{Binding Description}">
+                    <StackLayout Margin="16">
+                        <Label Text="Lorem ipsum dolor" FontSize="Large" FontFamily="{StaticResource TitleFont}"/>
+                        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin imperdiet, metus eu rutrum tempor, dolor orci sollicitudin magna, ut malesuada metus diam ac mauris. Phasellus non ligula quis mauris mattis ultricies. Integer id metus ut diam tristique ornare ut non lacus. Praesent aliquam nisl ut odio vulputate, nec ullamcorper mauris ultricies. " FontSize="Medium" FontFamily="{StaticResource BodyFont}" Margin="4"/>
+                    </StackLayout>
+                    <Grid.Triggers>
+                        <Trigger TargetType="Grid" Property="Grid.IsVisible" Value="True">
+                            <Trigger.EnterActions>
+                                <xamanimation:BeginAnimation
+                                                Animation="{StaticResource DescriptionAnimation}" />
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </Grid.Triggers>
+                </Grid>
+
+                <!--Tab 2-->
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="{i18n:Translate Characters}" Style="{StaticResource TabTitle}">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding Character}" Value="True" >
+                                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <BoxView x:Name="CharactersTab" Grid.Row="1" BackgroundColor="White">
+                        <BoxView.Triggers>
+                            <DataTrigger TargetType="BoxView" Binding="{Binding Character}" Value="true">
+                                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}"/>
+                                <Trigger.EnterActions>
+                                    <xamanimation:BeginAnimation
+                                                Animation="{StaticResource CharactersTabAnimation}" />
+                                </Trigger.EnterActions>
+                            </DataTrigger>
+                        </BoxView.Triggers>
+                    </BoxView>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CharacterCommand}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <!--Characters content-->
+                <Grid x:Name="CharactersPanel" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="0" IsVisible="{Binding Character}">
+                    <ListView ItemsSource="{Binding Characters}" 
+                              CachingStrategy="RecycleElement" 
+                              HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" Margin="8" Spacing="8">
+                                        <Image HeightRequest="64">
+                                            <Image.Source>
+                                                <UriImageSource Uri="{Binding AvatarSource}" 
+                                                            CacheValidity="1" 
+                                                            CachingEnabled="true"/>
+                                            </Image.Source>
+                                        </Image>
+                                        <StackLayout Margin="0, 4">
+                                            <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                            <Label Margin="4" Text="{Binding Vehicle.Model}" FontSize="Small"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Grid.Triggers>
+                        <Trigger TargetType="Grid" Property="Grid.IsVisible" Value="True">
+                            <Trigger.EnterActions>
+                                <xamanimation:BeginAnimation
+                                                Animation="{StaticResource CharactersAnimation}" />
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </Grid.Triggers>
+                </Grid>
+
+                <!--Tab 3-->
+                <Grid Grid.Row="0" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="{i18n:Translate Vehicles}" Style="{StaticResource TabTitle}">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding Vehicle}" Value="True">
+                                <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <BoxView x:Name="VehiclesTab" Grid.Row="1">
+                        <BoxView.Triggers>
+                            <DataTrigger TargetType="BoxView" Binding="{Binding Vehicle}" Value="True">
+                                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}"/>
+                                <Trigger.EnterActions>
+                                    <xamanimation:BeginAnimation
+                                                Animation="{StaticResource VehiclesTabAnimation}" />
+                                </Trigger.EnterActions>
+                            </DataTrigger>
+                        </BoxView.Triggers>
+                    </BoxView>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding VehicleCommand}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <!--Vehicles content-->
+                <Grid x:Name="VehiclesPanel" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="0" IsVisible="{Binding Vehicle}">
+                    <ListView ItemsSource="{Binding Vehicles}"
+                              CachingStrategy="RecycleElement" 
+                              HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" Margin="8" Spacing="8">
+                                        <Image HeightRequest="64">
+                                            <Image.Source>
+                                                <UriImageSource Uri="{Binding ImageSource}" 
+                                                                CacheValidity="1"
+                                                                CachingEnabled="True"/>
+                                            </Image.Source>
+                                        </Image>
+                                        <StackLayout Margin="0, 6">
+                                            <Label Text="{Binding Model}" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Brand}" FontSize="Small"/>
+                                            <Label Text="{Binding Color}" FontSize="Small"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Grid.Triggers>
+                        <Trigger TargetType="Grid" Property="Grid.IsVisible" Value="True">
+                            <Trigger.EnterActions>
+                                <xamanimation:BeginAnimation
+                                                Animation="{StaticResource VehiclesAnimation}" />
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </Grid.Triggers>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

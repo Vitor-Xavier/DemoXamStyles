@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:DemoXamStyles.Helpers"
+             x:Class="DemoXamStyles.Pages.SearchPage">
+    <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <BoxView Grid.Row="0" BackgroundColor="{StaticResource AccentColor}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.4*"/>
+                    <ColumnDefinition Width="8.6*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" 
+                       Source="ic_arrow_back_white_24dp.png" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}" NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <SearchBar Grid.Column="1" 
+                           Placeholder="{i18n:Translate Search}" 
+                           Text="{Binding SearchTerm}"
+                           SearchCommand="{Binding SearchCommand}"
+                           VerticalOptions="Center"/>
+            </Grid>
+            <ListView Grid.Row="1" 
+                      ItemsSource="{Binding Characters}"
+                      IsPullToRefreshEnabled="True"
+                      IsRefreshing="{Binding Refresh}"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}" Detail="{Binding Vehicle.Model}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
