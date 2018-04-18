@@ -35,6 +35,19 @@ namespace DemoXamStyles.ViewModels
             }
         }
 
+        private bool swithControl;
+
+        public bool SwithControl
+        {
+            get { return swithControl; }
+            set
+            {
+                swithControl = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private bool refresh;
 
         public bool Refresh

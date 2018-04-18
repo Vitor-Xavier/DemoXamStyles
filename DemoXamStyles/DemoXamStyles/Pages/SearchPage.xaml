@@ -4,11 +4,17 @@
              xmlns:i18n="clr-namespace:DemoXamStyles.Helpers"
              x:Class="DemoXamStyles.Pages.SearchPage">
     <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <i18n:InvertBooleanConverter x:Key="BoolInvert"></i18n:InvertBooleanConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="10*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <BoxView Grid.Row="0" BackgroundColor="{StaticResource AccentColor}"/>
             <Grid>
@@ -28,7 +34,9 @@
                            Placeholder="{i18n:Translate Search}" 
                            Text="{Binding SearchTerm}"
                            SearchCommand="{Binding SearchCommand}"
+                           IsEnabled="{Binding SwithControl, Converter={StaticResource BoolInvert}}"
                            VerticalOptions="Center"/>
+                <!--IsEnabled="{Binding SwithControl, Converter={StaticResource BoolInvert}}"-->
             </Grid>
             <ListView Grid.Row="1" 
                       ItemsSource="{Binding Characters}"
@@ -42,6 +50,16 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <StackLayout Grid.Row="2" 
+                         Spacing="8" 
+                         Margin="8" 
+                         Orientation="Horizontal" 
+                         HorizontalOptions="End">
+                <Label Text="Habilitar modo Readonly para a pesquisa"
+                       VerticalOptions="Center"
+                       VerticalTextAlignment="Center"/>
+                <Switch IsToggled="{Binding SwithControl}"/>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

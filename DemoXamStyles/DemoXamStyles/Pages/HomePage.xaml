@@ -57,7 +57,7 @@
             </Label>
             <Button Grid.Row="2" Grid.Column="0" 
                     Margin="8"
-                    BackgroundColor="White"
+                    BackgroundColor="Transparent"
                     Text="{i18n:Translate SearchPage}"
                     TextColor="{StaticResource SecondaryText}"
                     Command="{Binding SearchCommand}"/>
