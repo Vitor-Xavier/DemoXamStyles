@@ -19,9 +19,11 @@ namespace DemoXamStyles.Droid
 
             base.OnCreate(bundle);
 
+            Rg.Plugins.Popup.Popup.Init(this, bundle);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
-
+            
             Window.SetStatusBarColor(Android.Graphics.Color.Argb(255, 0, 0, 0));
         }
     }

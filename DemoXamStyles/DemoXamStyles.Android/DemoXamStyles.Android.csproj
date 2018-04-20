@@ -56,6 +56,9 @@
     <PackageReference Include="Plugin.Multilingual">
       <Version>1.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>1.1.4.154-pre</Version>
+    </PackageReference>
     <PackageReference Include="Xamanimation">
       <Version>1.1.0</Version>
     </PackageReference>

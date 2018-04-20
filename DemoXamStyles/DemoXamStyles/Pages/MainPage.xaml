@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:res="clr-namespace:DemoXamStyles.Resources;assembly=DemoXamStyles"
              xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation"
+             xmlns:behaviors="clr-namespace:DemoXamStyles.Behaviors"
              xmlns:i18n="clr-namespace:DemoXamStyles.Helpers"
              x:Class="DemoXamStyles.Pages.MainPage"
              Title="{i18n:Translate MainTitle}">
@@ -170,6 +171,9 @@
                     <ListView ItemsSource="{Binding Characters}" 
                               CachingStrategy="RecycleElement" 
                               HasUnevenRows="True">
+                        <ListView.Behaviors>
+                            <behaviors:ListViewItemTappedBehavior ItemTappedCommand="{Binding ListCommand}" />
+                        </ListView.Behaviors>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

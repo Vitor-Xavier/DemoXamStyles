@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Input;
 using DemoXamStyles.Models;
+using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 
 namespace DemoXamStyles.ViewModels
@@ -50,12 +51,17 @@ namespace DemoXamStyles.ViewModels
 
         public ICommand VehicleCommand => new Command(VehicleCommandExecute);
 
+        public ICommand ListCommand => new Command<Character>(ListCommandExecute);
+
         public ObservableCollection<Character> Characters { get; set; }
 
         public ObservableCollection<Vehicle> Vehicles { get; set; }
 
-        public MainViewModel()
+        private INavigation _navigation;
+
+        public MainViewModel(INavigation navigation)
         {
+            _navigation = navigation;
             DescriptionCommandExecute();
             Characters = new ObservableCollection<Character>();
             Vehicles = new ObservableCollection<Vehicle>();
@@ -85,6 +91,11 @@ namespace DemoXamStyles.ViewModels
             Character = false;
             if (Vehicles.Count == 0)
                 LoadVehicles();
+        }
+
+        private async void ListCommandExecute(Character character)
+        {
+            await _navigation.PushPopupAsync(new Pages.DetailsPage(character));
         }
 
         private void LoadVehicles()

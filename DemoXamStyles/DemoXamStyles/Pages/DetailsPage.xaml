@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="DemoXamStyles.Pages.DetailsPage"
+             Padding="30">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+          PositionIn="Center"
+          PositionOut="Center"
+          ScaleIn="1.2"
+          ScaleOut="1"
+          DurationIn="400"
+          DurationOut="200"
+          EasingIn="SinOut"
+          EasingOut="SinIn"
+          HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White" Margin="6">
+            <StackLayout Margin="8" Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                <Image HeightRequest="92">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding Character.AvatarSource}" 
+                                                            CacheValidity="1" 
+                                                            CachingEnabled="true"/>
+                    </Image.Source>
+                </Image>
+                <StackLayout Margin="4">
+                    <Label Text="{Binding Character.Name}" FontFamily="{StaticResource RegularFont}" FontSize="Large"/>
+                </StackLayout>
+            </StackLayout>
+            <Button Text="Fechar" Command="{Binding CloseCommand}" Margin="0, 0, 0, -10"/>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>
