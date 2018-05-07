@@ -126,6 +126,9 @@
   <data name="HomeTitle" xml:space="preserve">
     <value>Xamarin Styles</value>
   </data>
+  <data name="ListPage" xml:space="preserve">
+    <value>List</value>
+  </data>
   <data name="MainTitle" xml:space="preserve">
     <value>Choque de Cultura</value>
   </data>

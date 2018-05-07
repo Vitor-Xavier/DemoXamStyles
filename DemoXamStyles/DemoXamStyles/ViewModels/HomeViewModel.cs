@@ -34,7 +34,7 @@ namespace DemoXamStyles.ViewModels
 
         public async void SearchCommandExecute()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new Pages.SearchPage());
+            await Application.Current.MainPage.Navigation.PushAsync(new Pages.ListPage());
         }
 
         public void AnimationCommandExecute()

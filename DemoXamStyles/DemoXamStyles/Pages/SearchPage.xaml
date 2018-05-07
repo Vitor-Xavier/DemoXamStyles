@@ -1,65 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:DemoXamStyles.Helpers"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
              x:Class="DemoXamStyles.Pages.SearchPage">
-    <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <i18n:InvertBooleanConverter x:Key="BoolInvert"></i18n:InvertBooleanConverter>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+          PositionIn="Center"
+          PositionOut="Center"
+          ScaleIn="1.2"
+          ScaleOut="1"
+          DurationIn="400"
+          DurationOut="200"
+          EasingIn="SinOut"
+          EasingOut="SinIn"
+          HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="9*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="56"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <BoxView Grid.Row="0" BackgroundColor="{StaticResource AccentColor}"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.4*"/>
-                    <ColumnDefinition Width="8.6*"/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" 
-                       Source="ic_arrow_back_white_24dp.png" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding BackCommand}" NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <SearchBar Grid.Column="1" 
-                           Placeholder="{i18n:Translate Search}" 
-                           Text="{Binding SearchTerm}"
-                           SearchCommand="{Binding SearchCommand}"
-                           IsEnabled="{Binding SwithControl, Converter={StaticResource BoolInvert}}"
-                           VerticalOptions="Center"/>
-                <!--IsEnabled="{Binding SwithControl, Converter={StaticResource BoolInvert}}"-->
-            </Grid>
-            <ListView Grid.Row="1" 
-                      ItemsSource="{Binding Characters}"
-                      IsPullToRefreshEnabled="True"
-                      IsRefreshing="{Binding Refresh}"
-                      RefreshCommand="{Binding RefreshCommand}"
-                      CachingStrategy="RecycleElement">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding Name}" Detail="{Binding Vehicle.Model}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <StackLayout Grid.Row="2" 
-                         Spacing="8" 
-                         Margin="8" 
-                         Orientation="Horizontal" 
-                         HorizontalOptions="End">
-                <Label Text="Habilitar modo Readonly para a pesquisa"
-                       VerticalOptions="Center"
-                       VerticalTextAlignment="Center"/>
-                <Switch IsToggled="{Binding SwithControl}"/>
-            </StackLayout>
+            <BoxView Grid.Row="0" 
+                     BackgroundColor="White" 
+                     VerticalOptions="FillAndExpand"/>
+            <SearchBar Grid.Row="0" 
+                       Placeholder="{i18n:Translate Search}"
+                       PlaceholderColor="{StaticResource HintText}" 
+                       CancelButtonColor="{StaticResource HintText}" 
+                       Text="{Binding SearchTerm}"
+                       TextColor="{StaticResource SecondaryText}" 
+                       SearchCommand="{Binding CloseCommand}"
+                       VerticalOptions="FillAndExpand"
+                       HorizontalOptions="FillAndExpand"/>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CloseCommand}"/>
+            </Grid.GestureRecognizers>
         </Grid>
     </ContentPage.Content>
-</ContentPage>
+</pages:PopupPage>
