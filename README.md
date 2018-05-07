@@ -25,13 +25,18 @@ Lottie é uma biblioteca para Android e iOS que converte animações do Adobe Af
 ```
 PM> Install-Package Com.Airbnb.Xamarin.Forms.Lottie
 ```
+<img src="https://github.com/Vitor-Xavier/DemoXamStyles/blob/master/Images/LottiePage.gif" width="288" height="512" />
 
 ## Xamarin 
-
-### Effects
 
 ### Behaviors
 
 ### CustomRenderers
+
+### Effects
+
+### MessagingCenter
+
+<img src="https://github.com/Vitor-Xavier/DemoXamStyles/blob/master/Images/SearchPopup.gif" width="288" height="512" />
 
 ### Styles
