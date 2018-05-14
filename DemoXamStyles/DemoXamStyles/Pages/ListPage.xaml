@@ -27,7 +27,7 @@
                       CachingStrategy="RecycleElement">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Name}" Detail="{Binding Vehicle.Model}"/>
+                        <TextCell Text="{Binding Name}" TextColor="{StaticResource AccentColor}" Detail="{Binding Vehicle.Model}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

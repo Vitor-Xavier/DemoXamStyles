@@ -11,7 +11,10 @@ namespace DemoXamStyles
 	{
 		public App ()
 		{
-			InitializeComponent();
+            // Initialize Live Reload.
+            LiveReload.Init();
+
+            InitializeComponent();
 
             MainPage = new Pages.CustomNavigationPage(new Pages.HomePage());
         }
