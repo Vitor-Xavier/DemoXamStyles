@@ -9,17 +9,18 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
-            <i18n:InvertBooleanConverter x:Key="BoolInvert"></i18n:InvertBooleanConverter>
+            <i18n:InvertBooleanConverter x:Key="BoolInvert"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="56"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
             <BoxView Grid.Row="0" BackgroundColor="{StaticResource AccentColor}"/>
-            <ListView Grid.Row="1" 
+            <ListView x:Name="listView" 
+                      Grid.Row="1" 
                       ItemsSource="{Binding Characters}"
                       IsPullToRefreshEnabled="True"
                       IsRefreshing="{Binding Refresh}"

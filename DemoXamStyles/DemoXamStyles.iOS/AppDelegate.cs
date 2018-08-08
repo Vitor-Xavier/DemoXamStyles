@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Vapolia.Ios.Lib.Effects;
 
 namespace DemoXamStyles.iOS
 {
@@ -23,6 +24,7 @@ namespace DemoXamStyles.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Rg.Plugins.Popup.Popup.Init();
+            PlatformGestureEffect.Init();
 
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());

@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Vapolia.Droid.Lib.Effects;
 
 namespace DemoXamStyles.Droid
 {
@@ -20,6 +21,7 @@ namespace DemoXamStyles.Droid
             base.OnCreate(bundle);
 
             Rg.Plugins.Popup.Popup.Init(this, bundle);
+            PlatformGestureEffect.Init();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());

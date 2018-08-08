@@ -18,6 +18,13 @@ namespace DemoXamStyles.ViewModels
 
         public ICommand RefreshCommand => new Command(LoadCharacters);
 
+        public ICommand TesteCommand => new Command(TesteCommandExecute);
+
+        private void TesteCommandExecute()
+        {
+            Console.WriteLine("\n\n\nTeste\n\n\n");
+        }
+
         private string _searchTerm;
 
         public string SearchTerm

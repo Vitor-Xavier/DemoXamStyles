@@ -12,7 +12,7 @@ namespace DemoXamStyles
 		public App ()
 		{
             // Initialize Live Reload.
-            LiveReload.Init();
+            //LiveReload.Init();
 
             InitializeComponent();
 

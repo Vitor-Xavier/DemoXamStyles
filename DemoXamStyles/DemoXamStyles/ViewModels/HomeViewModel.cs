@@ -26,7 +26,6 @@ namespace DemoXamStyles.ViewModels
             }
         }
 
-
         public async void TabCommandExecute()
         {
             await Application.Current.MainPage.Navigation.PushAsync(new Pages.MainPage());

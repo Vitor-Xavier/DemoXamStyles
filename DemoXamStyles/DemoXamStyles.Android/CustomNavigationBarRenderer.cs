@@ -49,10 +49,8 @@ namespace TCC_App.Droid
 
         public CustomNavigationBarRenderer(Android.Content.Context context) : base(context)
         {
-            //_bottomSafeArea = Convert.ToInt32(context.Resources.DisplayMetrics.Density * 12.5);
             _statusBarHeight = Convert.ToInt32(context.Resources.DisplayMetrics.Density * 30);//Alterar
             _statusBarHeight = _statusBarHeight > 56 ? 56 : _statusBarHeight;
-            //_tabSafeArea = Convert.ToInt32(context.Resources.DisplayMetrics.Density * Naxam.Controls.Platform.Droid.BottomTabbedRenderer.BottomBarHeight);
         }
 
         protected override void OnElementChanged(ElementChangedEventArgs<NavigationPage> e)
@@ -65,10 +63,10 @@ namespace TCC_App.Droid
                 isTransparent = e.NewElement.BarBackgroundColor.A == 0 ? true : false;
 
                 var propVisible = memberInfo.GetProperty(nameof(ToolbarVisible), BindingFlags.Instance | BindingFlags.NonPublic);
-                ToolbarVisible = (bool)propVisible.GetValue(this);
+                ToolbarVisible = (bool) propVisible?.GetValue(this);
 
                 var propPadding = memberInfo.GetProperty(nameof(ContainerPadding), BindingFlags.Instance | BindingFlags.NonPublic);
-                ContainerPadding = (int)propPadding.GetValue(this);
+                ContainerPadding = (int) (propPadding?.GetValue(this) ?? 0);
 
                 var field = memberInfo.GetField(nameof(_toolbar), BindingFlags.Instance | BindingFlags.NonPublic);
                 _toolbar = field.GetValue(this) as AToolbar;
@@ -142,9 +140,8 @@ namespace TCC_App.Droid
                 AView child = GetChildAt(i);
 
                 var pageContainer = child.GetType().GetProperty("Child")?.GetValue(child) as IVisualElementRenderer;
-                Page childPage = pageContainer?.Element as Page;
 
-                if (childPage == null)
+                if (!(pageContainer?.Element is Page childPage))
                     return;
 
                 // We need to base the layout of both the child and the bar on the presence of the NavBar on the child Page itself.
